@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesibilidad para Daltonismo</title>
+    <style>
+        body {
+            transition: filter 0.3s ease;
+        }
+        
+        .daltonismo-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .daltonismo-btn:hover {
+            background-color: #45a049;
+        }
+        
+        .daltonismo-active {
+            background-color: #f44336;
+        }
+        
+        .daltonismo-active:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenido de tu página web aquí -->
+    
+    <button id="daltonismoBtn" class="daltonismo-btn">Activar función para daltónicos</button>
+    
+    <script>
+        const daltonismoBtn = document.getElementById('daltonismoBtn');
+        let daltonismoActivo = false;
+        
+        daltonismoBtn.addEventListener('click', function() {
+            daltonismoActivo = !daltonismoActivo;
+            
+            if (daltonismoActivo) {
+                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+                daltonismoBtn.textContent = 'Desactivar función para daltónicos';
+                daltonismoBtn.classList.add('daltonismo-active');
+            } else {
+                document.body.style.filter = 'none';
+                daltonismoBtn.textContent = 'Activar función para daltónicos';
+                daltonismoBtn.classList.remove('daltonismo-active');
+            }
+        });
+    </script>
+</body>
+</html>
