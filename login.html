@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Autenticación Mexicano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f5f0;
+            color: #333;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            height: 700px;
+        }
+        
+        .left-panel {
+            background: linear-gradient(135deg, rgba(163,33,29,0.9) 0%, rgba(29,78,137,0.9) 100%);
+        }
+        
+        .tab-active {
+            background-color: #1D4E89;
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: #A3211D;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #8a1c18;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #4A7729;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3d6422;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-focus:focus {
+            border-color: #F6A500;
+            box-shadow: 0 0 0 3px rgba(246, 165, 0, 0.2);
+        }
+        
+        .decoration-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(225, 28, 114, 0.2);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .social-btn:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-8">
+    <div class="main-container w-full bg-white rounded-xl shadow-xl overflow-hidden flex">
+        <!-- Left Panel with Mexican Motifs -->
+        <div class="left-panel w-1/2 relative overflow-hidden flex items-center justify-center p-12">
+            <div class="decoration-element" style="top: 20%; left: 10%; background-color: rgba(246, 165, 0, 0.2);"></div>
+            <div class="decoration-element" style="top: 60%; right: 15%; background-color: rgba(226, 28, 114, 0.15);"></div>
+            <div class="decoration-element" style="bottom: 10%; left: 30%; background-color: rgba(74, 119, 41, 0.15); width: 150px; height: 150px;"></div>
+            
+            <div class="relative z-10 text-center px-8">
+                <h1 class="text-4xl font-bold text-white mb-6">Bienvenido </h1>
+                
+                
+                <div class="floating">
+                    <img src="WhatsApp Image 2025-08-16 at 16.31.17.jpeg"  class="mx-auto w-64">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel with Forms -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Sistema de Acceso</h2>
+                
+            </div>
+            
+            <div class="flex mb-8 border-b border-gray-200">
+                <button id="login-tab" class="flex-1 py-3 px-4 font-medium text-lg text-center rounded-t-lg tab-active transition-all">
+                    Iniciar Sesión
+                </button>
+                <button id="signup-tab" class="flex-1 py-3 px-4 font-medium text-lg text-center text-gray-500 transition-all">
+                    Registrarse
+                </button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
+                    <input type="email" id="login-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="tucorreo@ejemplo.com">
+                    <p id="login-email-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" id="login-password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="••••••••">
+                    <p id="login-password-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember-me" class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-gray-700">Recordar sesión</label>
+                    </div>
+                    <a href="#" class="text-sm text-[#E11C72] hover:underline">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <button type="submit" class="w-full btn-primary text-white py-3 px-4 rounded-lg font-medium text-lg transition-all">
+                    Iniciar Sesión
+                </button>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signup-form" class="space-y-5 hidden">
+                <div>
+                    <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-2">Nombre Completo</label>
+                    <input type="text" id="signup-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="Juan Pérez">
+                    <p id="signup-name-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
+                    <input type="email" id="signup-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="tucorreo@ejemplo.com">
+                    <p id="signup-email-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" id="signup-password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="••••••••">
+                    <div class="password-strength mt-2 h-1 rounded-full bg-gray-200 overflow-hidden">
+                        <div id="password-strength-bar" class="h-full w-0 transition-all duration-500"></div>
+                    </div>
+                    <p id="signup-password-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div>
+                    <label for="signup-confirm" class="block text-sm font-medium text-gray-700 mb-2">Confirmar Contraseña</label>
+                    <input type="password" id="signup-confirm" required class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-all text-lg" placeholder="••••••••">
+                    <p id="signup-confirm-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                </div>
+                
+                <div class="flex items-center mb-6">
+                    <input type="checkbox" id="accept-terms" required class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label for="accept-terms" class="ml-2 block text-gray-700">
+                        Acepto los <a href="#" class="text-[#E11C72] hover:underline">Términos</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="w-full btn-secondary text-white py-3 px-4 rounded-lg font-medium text-lg transition-all">
+                    Crear Cuenta
+                </button>
+            </form>
+            
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginTab = document.getElementById('login-tab');
+            const signupTab = document.getElementById('signup-tab');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            
+            // Tab switching
+            loginTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginTab.classList.add('tab-active');
+                loginTab.classList.remove('text-gray-500');
+                loginTab.classList.add('text-white');
+                
+                signupTab.classList.remove('tab-active');
+                signupTab.classList.add('text-gray-500');
+                signupTab.classList.remove('text-white');
+                
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            });
+            
+            signupTab.addEventListener('click', function(e) {
+                e.preventDefault();
+                signupTab.classList.add('tab-active');
+                signupTab.classList.remove('text-gray-500');
+                signupTab.classList.add('text-white');
+                
+                loginTab.classList.remove('tab-active');
+                loginTab.classList.add('text-gray-500');
+                loginTab.classList.remove('text-white');
+                
+                signupForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            });
+            
+            // Real-time validation
+            document.getElementById('login-email').addEventListener('input', function() {
+                const email = this.value;
+                const errorElement = document.getElementById('login-email-error');
+                
+                if (!email.includes('@')) {
+                    errorElement.textContent = 'Ingresa un correo válido';
+                    errorElement.classList.remove('hidden');
+                    this.classList.add('border-red-500');
+                } else {
+                    errorElement.classList.add('hidden');
+                    this.classList.remove('border-red-500');
+                }
+            });
+            
+            document.getElementById('login-password').addEventListener('input', function() {
+                const password = this.value;
+                const errorElement = document.getElementById('login-password-error');
+                
+                if (password.length < 6) {
+                    errorElement.textContent = 'Mínimo 6 caracteres';
+                    errorElement.classList.remove('hidden');
+                    this.classList.add('border-red-500');
+                } else {
+                    errorElement.classList.add('hidden');
+                    this.classList.remove('border-red-500');
+                }
+            });
+            
+            document.getElementById('signup-password').addEventListener('input', function() {
+                const password = this.value;
+                const strengthBar = document.getElementById('password-strength-bar');
+                let strength = 0;
+                
+                if (password.length >= 8) strength += 25;
+                if (/[A-Z]/.test(password)) strength += 25;
+                if (/[0-9]/.test(password)) strength += 25;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+                
+                strengthBar.style.width = strength + '%';
+                
+                if (strength < 50) {
+                    strengthBar.style.backgroundColor = '#A3211D';
+                } else if (strength < 75) {
+                    strengthBar.style.backgroundColor = '#F6A500';
+                } else {
+                    strengthBar.style.backgroundColor = '#4A7729';
+                }
+            });
+            
+            // Form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                if (!email || !password) {
+                    alert('Por favor completa todos los campos');
+                    return;
+                }
+                
+                // Simulate loading
+                const btn = this.querySelector('button[type="submit"]');
+                btn.textContent = 'Autenticando...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Bienvenido de vuelta!\nEmail: ${email}`);
+                    btn.textContent = 'Iniciar Sesión';
+                    btn.disabled = false;
+                }, 1500);
+            });
+            
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('signup-name').value;
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                const confirm = document.getElementById('signup-confirm').value;
+                const terms = document.getElementById('accept-terms').checked;
+                
+                if (!name || !email || !password || !confirm) {
+                    alert('Por favor completa todos los campos');
+                    return;
+                }
+                
+                if (password !== confirm) {
+                    document.getElementById('signup-confirm-error').textContent = 'Las contraseñas no coinciden';
+                    document.getElementById('signup-confirm-error').classList.remove('hidden');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    document.getElementById('signup-password-error').textContent = 'La contraseña debe tener al menos 8 caracteres';
+                    document.getElementById('signup-password-error').classList.remove('hidden');
+                    return;
+                }
+                
+                if (!terms) {
+                    alert('Debes aceptar los términos y condiciones');
+                    return;
+                }
+                
+                // Simulate loading
+                const btn = this.querySelector('button[type="submit"]');
+                btn.textContent = 'Creando cuenta...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`Cuenta creada exitosamente!\nBienvenido ${name}`);
+                    btn.textContent = 'Crear Cuenta';
+                    btn.disabled = false;
+                    
+                    // Switch to login after successful registration
+                    loginTab.click();
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
